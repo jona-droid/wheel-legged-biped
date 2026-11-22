@@ -168,9 +168,14 @@ function ang(from, to) = atan2(to[0]-from[0], -(to[1]-from[1]));   // from strai
 // =====================================================================
 //  CHASSIS: the servo box. Servos slide in from the outside, tabs on the side plates.
 // =====================================================================
+servo_clear = 0.5;   // per side. 0.2 was too tight on the first chassis print (2026-11-22)
+cable_notch = [7, 7];  // width x depth of the cable notch at both ends of each opening
 module servo_cut() {
     // in the side plate's local frame: plate in YZ, servo centre at (y, z)
-    cube([wall*3, sv_W + 2*tol, sv_L + 2*tol], center=true);
+    cube([wall*3, sv_W + 2*servo_clear, sv_L + 2*servo_clear], center=true);
+    // notches at both short ends so the cable and its grommet slide through
+    for (s=[-1,1]) translate([0, 0, s*(sv_L/2 + servo_clear + cable_notch[1]/2 - 0.5)])
+        cube([wall*3, cable_notch[0], cable_notch[1] + 1], center=true);
 }
 module chassis_envelope() {   // faceted outer shape: chamfered corners and bottom edge
     hull() {
