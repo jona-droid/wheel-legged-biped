@@ -120,7 +120,7 @@ PLA, 0.20 mm layers, no supports. In Bambu Studio, import all the STLs, use righ
 - Left and right legs use identical parts; the left ones are just flipped over.
 - **Print a test set first** (1 crank, 1 link_b, 1 wheel_hub) to check the horn, motor and shaft fits.
 - The cranks fit the round disc horn that comes with generic MG996Rs (~21 mm, 25T spline). Eight radial slots line up with any hole circle. If your horn is a different size, change `horn_d`.
-- The N20 pocket goes right through link B and a pinch bolt clamps it. Fit tweaks: `servo_clear` / `servo_clear_end` (servo openings in the chassis, now 0.7 mm per side and 1.3 mm per end, no cable notch), `motor_tol` (N20 pocket, now 0.2) and `shaft_fit` (wheel hub D-hole, now 0.25).
+- The N20 pocket goes right through link B and a pinch bolt clamps it. Fit tweaks: `servo_clear` / `servo_clear_end` (servo openings in the chassis, now 0.7 mm per side and 1.1 mm per end, cut through the full servo depth, no cable notch), `motor_tol` (N20 pocket, now 0.2) and `shaft_fit` (wheel hub D-hole, now 0.25).
 
 Re-exporting a part after changing a parameter:
 ```

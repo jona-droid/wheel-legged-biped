@@ -97,6 +97,8 @@ pillar_h     = 40;
 post_xy      = [24, 27];   // chassis corner posts (deck bolts)
 pil_xy       = [44, 34];   // deck -> top pillars
 esp_len      = 63.0;  esp_w = 25.4;  esp_post_h = 14;
+esp_post_x   = 14;         // ESP32 posts at x = +-14 (clear of the deck bolts)
+esp_pin_dy   = 22.86;      // spacing of the two header rows
 batt_l       = 78;  batt_w = 41;     // 2x18650 holder footprint (measure yours)
 
 $fn = 48;
@@ -169,10 +171,15 @@ function ang(from, to) = atan2(to[0]-from[0], -(to[1]-from[1]));   // from strai
 //  CHASSIS: the servo box. Servos slide in from the outside, tabs on the side plates.
 // =====================================================================
 servo_clear     = 0.7;   // per side, across the servo width (first print at 0.2 was too tight)
-servo_clear_end = 1.3;   // per end, along the servo length: 1st print (0.2) was ~2 mm short, so +2.2 mm total; cable squeezes past (no notch)
+servo_clear_end = 1.1;   // per end, along the servo length (no notch). Above 1.1 the cut starts nicking the screw bosses
 module servo_cut() {
     // in the side plate's local frame: plate in YZ, servo centre at (y, z)
-    cube([wall*3, sv_W + 2*servo_clear, sv_L + 2*servo_clear_end], center=true);
+    // Cut the servo's whole path, from outside the plate to past the end of the servo body,
+    // so nothing inside the box (corner posts, screw bosses) sticks into it.
+    x_in  = wall/2 + sv_below_tab + 1;    // inward, past the bottom of the servo
+    x_out = wall*1.5;                     // outward, past the plate
+    translate([-x_in, -(sv_W/2 + servo_clear), -(sv_L/2 + servo_clear_end)])
+        cube([x_in + x_out, sv_W + 2*servo_clear, sv_L + 2*servo_clear_end]);
 }
 
 module chassis_envelope() {   // faceted outer shape: chamfered corners and bottom edge
@@ -204,7 +211,7 @@ module chassis() {
             translate([c*7 + (r%2)*3.5, s*(box_y/2 - 1.5), -11 + r*6.1])
                 rotate([90,0,0]) rotate([0,0,30]) cylinder(d=6.6, h=6, center=true, $fn=6);
         // servo openings
-        for (s=[-1,1], sy=[-1,1]) translate([s*(in_x + wall/2), sy*A_half, sv_cz]) servo_cut();
+        for (s=[-1,1], sy=[-1,1]) translate([s*(in_x + wall/2), sy*A_half, sv_cz]) mirror([s<0 ? 1 : 0, 0, 0]) servo_cut();
         // servo screw pilots
         for (s=[-1,1], sy=[-1,1], hz=[-1,1], hy=[-1,1])
             translate([s*(in_x), sy*A_half + hy*sv_hole_dy/2, sv_cz + hz*sv_hole_dz/2])
@@ -228,6 +235,8 @@ module esp_post() {
         translate([-pw, -(esp_w+0.6)/2, esp_post_h-0.8]) cube([2*pw, esp_w+0.6, 2]);
         translate([0, 0, esp_post_h-5]) cube([pw+2, 3.6, 2.2], center=true);
         translate([0, 0, esp_post_h-5]) cube([3.6, pd+2, 2.2], center=true);
+        // channels for the two rows of header pins (0.9 in apart) so the board sits flat
+        for (sy=[-1,1]) translate([0, sy*esp_pin_dy/2, esp_post_h]) cube([pw+2, 4, 2*9], center=true);
     }
 }
 module deck() {
@@ -235,7 +244,8 @@ module deck() {
         union() {
             bevel_plate(deck_w, deck_d, deck_t, 8, 0.8);
             // ESP32 on the back half, pins down
-            for (s=[-1,1]) translate([s*(esp_len/2 - 5), -22, deck_t]) esp_post();
+            // posts at +-14 so they don't cover the back deck-bolt holes at (+-24, -27)
+            for (s=[-1,1]) translate([s*esp_post_x, -22, deck_t]) esp_post();
             // MPU6050 pad, dead centre (on the pitch axis line)
             translate([0, 6, deck_t]) rounded_box([24, 20, 1.5], 2);
         }
@@ -248,7 +258,7 @@ module deck() {
             translate([0,0,-1]) cylinder(d=m3_head_d, h=1.8+1);
         }
         // wire pass-throughs to the servos below
-        for (sx=[-1,1]) translate([sx*14, 26, -1]) rounded_box([18, 8, deck_t+2], 2);
+        for (sx=[-1,1]) translate([sx*12, 26, -1]) rounded_box([16, 8, deck_t+2], 2);   // stops 1 mm short of the bolt heads
         translate([0, -2, -1]) rounded_box([14, 8, deck_t+2], 2);
         // MPU: M2 slots (GY-521 holes ~15.2 apart) + zip-tie
         for (sx=[-1,1]) hull() for (dy=[-1,1]) translate([sx*7.6, 12 + dy*1.2, -1]) cylinder(d=2.2, h=10);
