@@ -1,0 +1,11 @@
+# PlatformIO
+firmware/.pio/
+firmware/.vscode/
+# Python
+__pycache__/
+*.pyc
+# sim outputs written to the working directory
+sim/sim_*.png
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,94 @@
+<mujoco model="wheel_biped">
+  <compiler angle="degree"/>
+  <option timestep="0.0005" integrator="implicitfast"/>
+  <visual><global offwidth="1280" offheight="720"/></visual>
+  <asset>
+    <texture name="grid" type="2d" builtin="checker" rgb1=".25 .26 .28" rgb2=".32 .33 .35" width="300" height="300"/>
+    <material name="grid" texture="grid" texrepeat="8 8" reflectance=".1"/>
+  </asset>
+  <default><geom contype="0" conaffinity="0"/></default>
+  <worldbody>
+    <light pos="0 -1 2" dir="0 0.5 -1"/>
+    <geom name="floor" type="plane" size="10 10 0.1" material="grid" contype="1" conaffinity="1"/>
+    <body name="chassis" pos="0 0 0.1455">
+      <freejoint name="root"/>
+      <!-- origin = midway between the servo shafts -->
+      <geom type="box" pos="-0.016 -0.0135 -0.0102" size="0.0145 0.0099 0.0204" mass="0.055" rgba=".1 .1 .1 1"/>
+      <geom type="box" pos="-0.016 0.0135 -0.0102" size="0.0145 0.0099 0.0204" mass="0.055" rgba=".1 .1 .1 1"/>
+      <geom type="box" pos="0.016 -0.0135 -0.0102" size="0.0145 0.0099 0.0204" mass="0.055" rgba=".1 .1 .1 1"/>
+      <geom type="box" pos="0.016 0.0135 -0.0102" size="0.0145 0.0099 0.0204" mass="0.055" rgba=".1 .1 .1 1"/>
+      <geom name="box" type="box" pos="0 0 -0.012" size="0.0315 0.032 0.0295" mass="0.07100000000000001" rgba=".27 .51 .71 .4"
+            contype="1" conaffinity="1"/>
+      <geom type="box" pos="0 0 0.026" size="0.052 0.042 0.008" mass="0.067" rgba=".7 .75 .85 1"/>
+      <geom type="box" pos="0 0 0.063" size="0.052 0.042 0.002" mass="0.029" rgba=".7 .75 .85 1"/>
+      <geom name="battery" type="box" pos="0 0 0.075" size="0.039 0.0205 0.010" mass="0.107" rgba="0 .5 0 1"/>
+      <site name="imu" pos="0 0.006 0.023"/>
+
+      <body name="R_crankF" pos="0.0497 0.0135 0">
+        <joint name="R_hipF" axis="1 0 0" damping="0.02" armature="0.002"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.0550" size="0.005" mass="0.006" rgba="1 .6 0 1"/>
+        <body name="R_linkA" pos="0.0069 0 -0.0550">
+          <joint name="R_kneeA" axis="1 0 0" damping="0.001"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.0750" size="0.004" mass="0.003" rgba=".55 .8 .9 1"/>
+          <site name="R_pinA" pos="0.0028 0 -0.0750" size="0.003"/>
+        </body>
+      </body>
+      <body name="R_crankR" pos="0.0497 -0.0135 0">
+        <joint name="R_hipR" axis="1 0 0" damping="0.02" armature="0.002"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.0550" size="0.005" mass="0.006" rgba="1 .6 0 1"/>
+        <body name="R_linkB" pos="0.0125 0 -0.0550">
+          <joint name="R_kneeB" axis="1 0 0" damping="0.001"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.1000" size="0.004" mass="0.008" rgba=".2 .4 .6 1"/>
+          <geom type="box" pos="-0.0100 0 -0.1000" size="0.012 0.006 0.005" mass="0.01" rgba=".7 .7 .7 1"/>
+          <site name="R_pinB" pos="-0.0028 0 -0.0750" size="0.003"/>
+          <body name="R_wheel" pos="0.0085 0 -0.1000">
+            <joint name="R_wheel" axis="-1 0 0" damping="0.0002" frictionloss="0.002"/>
+            <geom name="R_tire" type="cylinder" size="0.0335 0.005" euler="0 90 0" mass="0.013"
+                  contype="1" conaffinity="1" friction="1.0 0.01 0.001" rgba=".2 .2 .2 1"/>
+          </body>
+        </body>
+      </body>
+
+      <body name="L_crankF" pos="-0.0497 0.0135 0">
+        <joint name="L_hipF" axis="1 0 0" damping="0.02" armature="0.002"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.0550" size="0.005" mass="0.006" rgba="1 .6 0 1"/>
+        <body name="L_linkA" pos="-0.0069 0 -0.0550">
+          <joint name="L_kneeA" axis="1 0 0" damping="0.001"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.0750" size="0.004" mass="0.003" rgba=".55 .8 .9 1"/>
+          <site name="L_pinA" pos="-0.0028 0 -0.0750" size="0.003"/>
+        </body>
+      </body>
+      <body name="L_crankR" pos="-0.0497 -0.0135 0">
+        <joint name="L_hipR" axis="1 0 0" damping="0.02" armature="0.002"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.0550" size="0.005" mass="0.006" rgba="1 .6 0 1"/>
+        <body name="L_linkB" pos="-0.0125 0 -0.0550">
+          <joint name="L_kneeB" axis="1 0 0" damping="0.001"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.1000" size="0.004" mass="0.008" rgba=".2 .4 .6 1"/>
+          <geom type="box" pos="0.0100 0 -0.1000" size="0.012 0.006 0.005" mass="0.01" rgba=".7 .7 .7 1"/>
+          <site name="L_pinB" pos="0.0028 0 -0.0750" size="0.003"/>
+          <body name="L_wheel" pos="-0.0085 0 -0.1000">
+            <joint name="L_wheel" axis="-1 0 0" damping="0.0002" frictionloss="0.002"/>
+            <geom name="L_tire" type="cylinder" size="0.0335 0.005" euler="0 90 0" mass="0.013"
+                  contype="1" conaffinity="1" friction="1.0 0.01 0.001" rgba=".2 .2 .2 1"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <equality>
+    <connect site1="R_pinA" site2="R_pinB" solref="0.002 1"/>
+    <connect site1="L_pinA" site2="L_pinB" solref="0.002 1"/>
+  </equality>
+  <actuator>
+    <position name="R_hipF" joint="R_hipF" kp="6.0" forcerange="-1.0 1.0" forcelimited="true"/>
+    <position name="R_hipR" joint="R_hipR" kp="6.0" forcerange="-1.0 1.0" forcelimited="true"/>
+    <position name="L_hipF" joint="L_hipF" kp="6.0" forcerange="-1.0 1.0" forcelimited="true"/>
+    <position name="L_hipR" joint="L_hipR" kp="6.0" forcerange="-1.0 1.0" forcelimited="true"/>
+    <motor name="R_wheel" joint="R_wheel"/>
+    <motor name="L_wheel" joint="L_wheel"/>
+  </actuator>
+  <sensor>
+    <gyro name="gyro" site="imu"/>
+    <accelerometer name="accel" site="imu"/>
+  </sensor>
+</mujoco>

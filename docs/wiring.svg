@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="820" viewBox="0 0 1240 820" font-family="Helvetica, Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+<style>.t{font-size:17px;font-weight:bold;text-anchor:middle;fill:#223} .s{font-size:12px;text-anchor:middle;fill:#556}
+.s2{font-size:11px;fill:#556} .p{font-size:13px;fill:#223} .n{font-size:13px;fill:#334} .w{font-size:11px;font-weight:bold;fill:#d62828}
+.r{font-size:14px;fill:#223}</style>
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="30" y="28" font-size="20" font-weight="bold" fill="#223">Wheel-legged biped wiring</text>
+<rect x="30" y="60" width="190" height="120" rx="8" fill="#f4f6fa" stroke="#334" stroke-width="2"/>
+<text x="125.0" y="82" class="t">2S 18650 pack</text>
+<text x="125.0" y="168" class="s">7.4 V (6.6-8.4), with switch</text>
+<rect x="300" y="40" width="190" height="120" rx="8" fill="#f4f6fa" stroke="#334" stroke-width="2"/>
+<text x="395.0" y="62" class="t">MP1584EN buck</text>
+<text x="395.0" y="148" class="s">SET TO 5.0 V FIRST</text>
+<rect x="300" y="200" width="190" height="120" rx="8" fill="#f4f6fa" stroke="#334" stroke-width="2"/>
+<text x="395.0" y="222" class="t">UBEC 6 V / 5 A+</text>
+<text x="395.0" y="308" class="s">servo power only</text>
+<rect x="600" y="40" width="240" height="560" rx="8" fill="#eef4ff" stroke="#334" stroke-width="2"/>
+<text x="720.0" y="62" class="t">ESP32-S3</text>
+<text x="720.0" y="588" class="s">DevKitC-1</text>
+<rect x="960" y="40" width="230" height="175" rx="8" fill="#f4f6fa" stroke="#334" stroke-width="2"/>
+<text x="1075.0" y="62" class="t">GY-521 (MPU6050)</text>
+<text x="1075.0" y="203" class="s">flat on the deck, X arrow along the axle</text>
+<rect x="960" y="250" width="230" height="330" rx="8" fill="#f4f6fa" stroke="#334" stroke-width="2"/>
+<text x="1075.0" y="272" class="t">4x MG996R</text>
+<rect x="300" y="440" width="190" height="200" rx="8" fill="#f4f6fa" stroke="#334" stroke-width="2"/>
+<text x="395.0" y="462" class="t">MX1508</text>
+<text x="395.0" y="628" class="s">wheel motor driver</text>
+<rect x="1045" y="282" width="135" height="44" rx="5" fill="#fff" stroke="#334"/>
+<text x="1112" y="297" class="p" text-anchor="middle">right FRONT (RF)</text>
+<text x="1112" y="315" class="s2" text-anchor="middle">orange / red / brown</text>
+<circle cx="1045" cy="292" r="4" fill="#334"/>
+<text x="1053" y="296" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="302" r="4" fill="#334"/>
+<text x="1053" y="306" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="312" r="4" fill="#334"/>
+<text x="1053" y="316" class="p" text-anchor="start"></text>
+<rect x="1045" y="352" width="135" height="44" rx="5" fill="#fff" stroke="#334"/>
+<text x="1112" y="367" class="p" text-anchor="middle">right REAR (RR)</text>
+<text x="1112" y="385" class="s2" text-anchor="middle">orange / red / brown</text>
+<circle cx="1045" cy="362" r="4" fill="#334"/>
+<text x="1053" y="366" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="372" r="4" fill="#334"/>
+<text x="1053" y="376" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="382" r="4" fill="#334"/>
+<text x="1053" y="386" class="p" text-anchor="start"></text>
+<rect x="1045" y="422" width="135" height="44" rx="5" fill="#fff" stroke="#334"/>
+<text x="1112" y="437" class="p" text-anchor="middle">left FRONT (LF)</text>
+<text x="1112" y="455" class="s2" text-anchor="middle">orange / red / brown</text>
+<circle cx="1045" cy="432" r="4" fill="#334"/>
+<text x="1053" y="436" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="442" r="4" fill="#334"/>
+<text x="1053" y="446" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="452" r="4" fill="#334"/>
+<text x="1053" y="456" class="p" text-anchor="start"></text>
+<rect x="1045" y="492" width="135" height="44" rx="5" fill="#fff" stroke="#334"/>
+<text x="1112" y="507" class="p" text-anchor="middle">left REAR (LR)</text>
+<text x="1112" y="525" class="s2" text-anchor="middle">orange / red / brown</text>
+<circle cx="1045" cy="502" r="4" fill="#334"/>
+<text x="1053" y="506" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="512" r="4" fill="#334"/>
+<text x="1053" y="516" class="p" text-anchor="start"></text>
+<circle cx="1045" cy="522" r="4" fill="#334"/>
+<text x="1053" y="526" class="p" text-anchor="start"></text>
+<circle cx="120" cy="560" r="24" fill="#ddd" stroke="#334" stroke-width="2"/>
+<text x="120" y="565" class="p" text-anchor="middle">M</text>
+<text x="30" y="530" class="p" text-anchor="start">LEFT wheel (N20)</text>
+<circle cx="120" cy="625" r="24" fill="#ddd" stroke="#334" stroke-width="2"/>
+<text x="120" y="630" class="p" text-anchor="middle">M</text>
+<text x="30" y="595" class="p" text-anchor="start">RIGHT wheel (N20)</text>
+<circle cx="220" cy="95" r="4" fill="#334"/>
+<text x="212" y="99" class="p" text-anchor="end">+</text>
+<circle cx="220" cy="145" r="4" fill="#334"/>
+<text x="212" y="149" class="p" text-anchor="end">−</text>
+<circle cx="300" cy="75" r="4" fill="#334"/>
+<text x="308" y="79" class="p" text-anchor="start">IN+</text>
+<circle cx="300" cy="125" r="4" fill="#334"/>
+<text x="308" y="129" class="p" text-anchor="start">IN−</text>
+<circle cx="490" cy="75" r="4" fill="#334"/>
+<text x="482" y="79" class="p" text-anchor="end">OUT+</text>
+<circle cx="490" cy="125" r="4" fill="#334"/>
+<text x="482" y="129" class="p" text-anchor="end">OUT−</text>
+<circle cx="300" cy="235" r="4" fill="#334"/>
+<text x="308" y="239" class="p" text-anchor="start">IN+</text>
+<circle cx="300" cy="285" r="4" fill="#334"/>
+<text x="308" y="289" class="p" text-anchor="start">IN−</text>
+<circle cx="490" cy="235" r="4" fill="#334"/>
+<text x="482" y="239" class="p" text-anchor="end">+6V</text>
+<circle cx="490" cy="285" r="4" fill="#334"/>
+<text x="482" y="289" class="p" text-anchor="end">GND</text>
+<circle cx="600" cy="75" r="4" fill="#334"/>
+<text x="608" y="79" class="p" text-anchor="start">5V</text>
+<circle cx="600" cy="125" r="4" fill="#334"/>
+<text x="608" y="129" class="p" text-anchor="start">GND</text>
+<circle cx="600" cy="262" r="4" fill="#334"/>
+<text x="608" y="266" class="p" text-anchor="start">GPIO1</text>
+<circle cx="600" cy="470" r="4" fill="#334"/>
+<text x="608" y="474" class="p" text-anchor="start">GPIO4</text>
+<circle cx="600" cy="500" r="4" fill="#334"/>
+<text x="608" y="504" class="p" text-anchor="start">GPIO5</text>
+<circle cx="600" cy="530" r="4" fill="#334"/>
+<text x="608" y="534" class="p" text-anchor="start">GPIO6</text>
+<circle cx="600" cy="560" r="4" fill="#334"/>
+<text x="608" y="564" class="p" text-anchor="start">GPIO7</text>
+<circle cx="840" cy="75" r="4" fill="#334"/>
+<text x="832" y="79" class="p" text-anchor="end">3V3</text>
+<circle cx="840" cy="125" r="4" fill="#334"/>
+<text x="832" y="129" class="p" text-anchor="end">GND</text>
+<circle cx="840" cy="160" r="4" fill="#334"/>
+<text x="832" y="164" class="p" text-anchor="end">GPIO8</text>
+<circle cx="840" cy="190" r="4" fill="#334"/>
+<text x="832" y="194" class="p" text-anchor="end">GPIO9</text>
+<circle cx="840" cy="292" r="4" fill="#334"/>
+<text x="832" y="296" class="p" text-anchor="end">GPIO10</text>
+<circle cx="840" cy="362" r="4" fill="#334"/>
+<text x="832" y="366" class="p" text-anchor="end">GPIO11</text>
+<circle cx="840" cy="432" r="4" fill="#334"/>
+<text x="832" y="436" class="p" text-anchor="end">GPIO12</text>
+<circle cx="840" cy="502" r="4" fill="#334"/>
+<text x="832" y="506" class="p" text-anchor="end">GPIO13</text>
+<circle cx="960" cy="75" r="4" fill="#334"/>
+<text x="968" y="79" class="p" text-anchor="start">VCC</text>
+<circle cx="960" cy="125" r="4" fill="#334"/>
+<text x="968" y="129" class="p" text-anchor="start">GND</text>
+<circle cx="960" cy="160" r="4" fill="#334"/>
+<text x="968" y="164" class="p" text-anchor="start">SDA</text>
+<circle cx="960" cy="190" r="4" fill="#334"/>
+<text x="968" y="194" class="p" text-anchor="start">SCL</text>
+<circle cx="490" cy="470" r="4" fill="#334"/>
+<text x="482" y="474" class="p" text-anchor="end">IN1</text>
+<circle cx="490" cy="500" r="4" fill="#334"/>
+<text x="482" y="504" class="p" text-anchor="end">IN2</text>
+<circle cx="490" cy="530" r="4" fill="#334"/>
+<text x="482" y="534" class="p" text-anchor="end">IN3</text>
+<circle cx="490" cy="560" r="4" fill="#334"/>
+<text x="482" y="564" class="p" text-anchor="end">IN4</text>
+<circle cx="300" cy="470" r="4" fill="#334"/>
+<text x="308" y="474" class="p" text-anchor="start">+</text>
+<circle cx="300" cy="500" r="4" fill="#334"/>
+<text x="308" y="504" class="p" text-anchor="start">−</text>
+<circle cx="300" cy="550" r="4" fill="#334"/>
+<text x="308" y="554" class="p" text-anchor="start">A1</text>
+<circle cx="300" cy="575" r="4" fill="#334"/>
+<text x="308" y="579" class="p" text-anchor="start">A2</text>
+<circle cx="300" cy="610" r="4" fill="#334"/>
+<text x="308" y="614" class="p" text-anchor="start">B1</text>
+<circle cx="300" cy="635" r="4" fill="#334"/>
+<text x="308" y="639" class="p" text-anchor="start">B2</text>
+<polyline points="220,95 260,95 260,75 300,75" fill="none" stroke="#d62828" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="260,95 260,235 300,235" fill="none" stroke="#d62828" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="260,235 260,470 300,470" fill="none" stroke="#d62828" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="220,145 245,145 245,125 300,125" fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="245,145 245,285 300,285" fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="245,285 245,500 300,500" fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="490,75 600,75" fill="none" stroke="#d62828" stroke-width="4" stroke-linejoin="round" stroke-dasharray="7 5"/>
+<text x="545" y="66" class="w" text-anchor="middle">POWER JUMPER</text>
+<polyline points="490,125 600,125" fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="260,95 270,95" fill="none" stroke="#d62828" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="260,180 560,180 560,195" fill="none" stroke="#d62828" stroke-width="2" stroke-linejoin="round"/>
+<rect x="553" y="195" width="14" height="45" fill="#fff" stroke="#334" stroke-width="2"/>
+<text x="572" y="221.5" class="p" text-anchor="start">22k</text>
+<polyline points="560,240 560,300" fill="none" stroke="#7048e8" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="560,262 600,262" fill="none" stroke="#7048e8" stroke-width="2" stroke-linejoin="round"/>
+<rect x="553" y="300" width="14" height="45" fill="#fff" stroke="#334" stroke-width="2"/>
+<text x="572" y="326.5" class="p" text-anchor="start">10k</text>
+<polyline points="560,345 560,395 245,395" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+<text x="505" y="380" class="s2" text-anchor="start">battery sense</text>
+<polyline points="490,235 1000,235 1000,513" fill="none" stroke="#d62828" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1000,292 1045,302" fill="none" stroke="#d62828" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1000,362 1045,372" fill="none" stroke="#d62828" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1000,432 1045,442" fill="none" stroke="#d62828" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1000,502 1045,512" fill="none" stroke="#d62828" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="490,285 530,285 530,610 1020,610 1020,314" fill="none" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="1020,314 1045,314" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1020,384 1045,384" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1020,454 1045,454" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="1020,524 1045,524" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+<rect x="1007" y="590" width="40" height="14" fill="#fff" stroke="#334"/>
+<text x="985" y="640" class="s2" text-anchor="start">1000 µF 10 V across the servo rail</text>
+<polyline points="840,292 960,292 960,292 1045,292" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="840,362 960,362 960,362 1045,362" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="840,432 960,432 960,432 1045,432" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="840,502 960,502 960,502 1045,502" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="840,75 960,75" fill="none" stroke="#d62828" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="840,125 960,125" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="840,160 960,160" fill="none" stroke="#1971c2" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="840,190 960,190" fill="none" stroke="#2b8a3e" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="490,470 600,470" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="490,500 600,500" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="490,530 600,530" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="490,560 600,560" fill="none" stroke="#f08c00" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="300,550 160,550 144,555" fill="none" stroke="#555" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="300,575 160,575 144,568" fill="none" stroke="#555" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="300,610 160,610 144,618" fill="none" stroke="#555" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="300,635 160,635 144,632" fill="none" stroke="#555" stroke-width="2" stroke-linejoin="round"/>
+<text x="30" y="700" class="r" text-anchor="start">1. Set the MP1584 to 5.0 V and check the UBEC's output (switch/jumper on 6 V) with the multimeter BEFORE connecting anything.</text>
+<text x="30" y="726" class="r" text-anchor="start">2. Servo red wires go ONLY to the UBEC, never to the ESP32 5V or 3V3. Only the orange signal wires go to the ESP32.</text>
+<text x="30" y="752" class="r" text-anchor="start">3. Pull the power jumper whenever USB is plugged in. All grounds (battery, buck, UBEC, MX1508, ESP32) are joined.</text>
+<text x="30" y="778" class="r" text-anchor="start">4. The 2S pack is 8.4 V when full: the 22k/10k divider keeps GPIO1 below 3.3 V. Don't use 10k/10k here.</text>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTpmOTA3NWE2YS05MDNkLTQ2MGYtYTRiMy0yOGEwMDY2NWI0MDkAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaHNlobXZgCStUFJDXhFWL/gAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDoxYTM1YTQ5Ny0xNWY1LTRhMjktYWE1MC01OGRiYjE1NDUzOGNscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoSpgCKXxpQMkVMoOMK57oTwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggIkKYi7dLUMIHRsTsnUG6UeG6apidHmIr3zI6y5ZGGzSkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaI1rpQO2ys9O+URD+pOYD48AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIGkpfF8Ytuly2qsYaEb2CnZUROwTsts/6SaAC+hHzOVBZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GTl4Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmY5MDc1YTZhLTkwM2QtNDYwZi1hNGIzLTI4YTAwNjY1YjQwOS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmU5YTMyZTViLTQwY2QtNDg2MS04NmQzLTMzYmQ3NzExYTIxN3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAiQpiLt0tQwgdGxOydQbpR4bpqmJ0eYivfMjrLlkYbNKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggtZqqN+bzj5zmpBZshAzd/3KQmnB1PgIqzknoSgsNZ0KiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgg7SKrbcBQSawECmiv8q04lWTJ4E0KJAy3imQFjgdqT8R0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQND0XTyxgAoglg6HHIZqThuks7PXPyjleLT9W3+NA2904+tYm4NxM2tNHSPwM7eEvHcdoAEuI/EcrG8T5STFB7E=</c2pa:manifest></metadata></svg>
