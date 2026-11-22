@@ -9,9 +9,9 @@ ESP32-S3 · MPU6050 · 4x MG996R · 2x N20 · PLA + TPU · MuJoCo sim · phone c
 | | |
 |---|---|
 | **Height** | 19 cm crouched · **23 cm standing** · 26 cm fully stretched |
-| **Width** | 15 cm across the tyres |
-| **Mass** | ~600 g on 2S 18650 (~710 g on two 4xAA packs) |
-| **Legs** | Five-bar linkage per leg, both MG996R servos inside the body |
+| **Width** | 16 cm across the tyres |
+| **Mass** | ~680 g on 2S 18650 (~790 g on two 4xAA packs) |
+| **Legs** | Five-bar linkage per leg, both MG996R servos inside the body, 608 ball bearings in the knee joints |
 | **Wheels** | N20 6 V 300 rpm gear motors, TPU tyre on a PLA hub |
 | **Brain** | ESP32-S3 DevKitC-1 + MPU6050, tuning page and joystick on your phone |
 | **Status** | Designed, simulated, firmware compiles. Test prints fit. Not yet balanced on hardware |
@@ -37,11 +37,11 @@ ESP32-S3 · MPU6050 · 4x MG996R · 2x N20 · PLA + TPU · MuJoCo sim · phone c
 
 ## How the legs work
 
-Each leg is a **five-bar linkage** (side view below, front is to the right). Both servos sit in the body and each turns a short crank. Link A and link B meet at a pin joint, and link B carries on down to the wheel motor. Turning both cranks together raises or lowers the wheel; turning them against each other moves it forward or back. No servo rides on the leg, so the legs stay light, which makes balancing easier.
+Each leg is a **five-bar linkage** (side view below, front is to the right). Both servos sit in the body and each turns a short crank. Link A and link B meet at a knee joint, and link B carries on down to the wheel motor. Turning both cranks together raises or lowers the wheel; turning them against each other moves it forward or back. No servo rides on the leg, so the legs stay light, which makes balancing easier.
 
 <p align="center"><img src="docs/side_view.png" width="340" alt="Side view of the five-bar leg"></p>
 
-The geometry (servo shafts 27 mm apart, crank 55 mm, link A 75 mm, link B 100 mm) comes from `sim/leg_kinematics.py`. Holding the robot up takes at most **0.19 N·m per servo** at any height, about a fifth of what an MG996R can deliver.
+The geometry (servo shafts 27 mm apart, crank 55 mm, link A 75 mm, link B 100 mm) comes from `sim/leg_kinematics.py`. Holding the robot up takes at most **0.19 N·m per servo** at any height, about a fifth of what an MG996R can deliver (the table assumes 4 N per wheel, i.e. a robot of up to ~800 g).
 
 | Wheel depth below the shafts | Robot height | Front crank | Rear crank | Servo torque (static) |
 |---|---|---|---|---|
@@ -78,8 +78,8 @@ Crank angles are measured from straight down, + = toward the front.
 - Optional: HC-SR04, which fits the visor
 
 **Hardware**
-- M3 bolts: 2x M3x12, 4x M3x16, 2x M3x20 for the leg joints and motor clamps, plus ~12x M3x8 for the frame
-- M3 nuts and ~20 washers. Nyloc nuts are nicer; plain nuts locked against each other also work
+- 6x 608 ball bearings (8 x 22 x 7 mm, skateboard bearings), 3 per leg
+- M3 bolts: 4x M3x12 + 2x M3x20 for the leg joints (no nuts: they thread into the printed bushings), 2x M3x16 + nuts for the motor clamps, plus ~12x M3x8 for the frame
 - ~12 M3 heat-set inserts (or set `use_inserts = false` and screw into the plastic)
 - 2 small M2 screws (wheel hub onto the shaft flat), zip ties, a 20 mm velcro strap
 
@@ -113,12 +113,14 @@ PLA, 0.20 mm layers, no supports. In Bambu Studio, import all the STLs, use righ
 | | `visor.stl` | 1 | 🟦 Blue | 3 | 25%, face down |
 | **3 · Links** | `link_a.stl` | 2 | ⬛ Grey | **5** | **50% gyroid** |
 | | `link_b.stl` | 2 | ⬛ Grey | **5** | **50% gyroid**, flat side down |
-| | `spacer.stl` | 2 | ⬛ Grey | 4 | 100% |
+| | `bushing.stl` | 4 | 🟦 Blue | 4 | 100%, collar down (print with plate 2) |
+| | `bushing_long.stl` | 2 | 🟦 Blue | 4 | 100%, collar down (print with plate 2) |
 | **4 · Tyres** | `tire.stl` | 2 | TPU 95A | 3 | 20%, external spool (not the AMS), Generic TPU profile |
 
 - One colour per plate, so no colour changes mid-print.
 - Left and right legs use identical parts; the left ones are just flipped over.
-- **Print a test set first** (1 crank, 1 link_b, 1 wheel_hub) to check the horn, motor and shaft fits.
+- **Print a test set first** (1 crank, 1 link_a, 1 link_b, 1 bushing, 1 wheel_hub) to check the horn, bearing, motor and shaft fits.
+- Bearing fits: the 608 should press into the link by hand or with a vice (`bear_fit`, now 0.15; tighter 0.05, looser 0.25), and the bushing should press into the bearing (`bush_d`, now 7.95; looser 7.85, tighter 8.05).
 - The cranks fit the round disc horn that comes with generic MG996Rs (~21 mm, 25T spline). Eight radial slots line up with any hole circle. If your horn is a different size, change `horn_d`.
 - The N20 pocket goes right through link B and a pinch bolt clamps it. Fit tweaks: `servo_clear` / `servo_clear_end` (servo openings in the chassis, now 0.7 mm per side and 1.1 mm per end, cut through the full servo depth, no cable notch), `motor_tol` (N20 pocket, now 0.2) and `shaft_fit` (wheel hub D-hole, now 0.25).
 
@@ -135,12 +137,16 @@ Front = the side with the front servos. Left and right are as seen from behind.
 2. **Centre the servos.** Wire the servo signals and power (section 5), flash **stage3_legs**, type `pose90`. Do this *before* fitting any horns.
 3. **Servos into the chassis.** Push each one in from the outside, **shaft end up**, wire down through the floor hole. Fix it with the screws from the servo bag.
 4. **Cranks.** Screw each crank to a disc horn (2 to 4 small screws through the horn's holes into the crank's slots). With the servos still at 90°, push the horns on so the **front cranks point ~30° forward of straight down** and the **rear cranks ~55° backward**. The spline only allows 14° steps; pick the closest and the trim fixes the rest. Add the horn's centre screw through the hole in the crank.
-5. **Links.** Put a washer between every pair of moving parts. Tighten until there's no wobble but the joint still swings freely.
-   - front crank + link A: M3x16
-   - rear crank + spacer + link B: M3x20
-   - link A + link B (the hole 75 mm down link B): M3x12
+5. **Bearings and links.** Each leg has three 608 bearings, one in every passive joint.
+   - Press the bearings in: one at each end of link A and one at the top of link B. Each seat has a thin lip on one side; push the bearing in from the open side until it sits on the lip.
+   - Each joint is: M3 bolt (head sunk into the counterbore) → the part without the bearing → bushing collar → bushing spigot pressed into the bearing. The bolt cuts its own thread in the bushing, so no nut and no washers are needed. Tighten until the bushing is locked to that part (the bearing does all the turning), and stop before the plastic strips.
+   - Front crank + link A: `bushing` + M3x12, head on the servo side of the crank.
+   - Rear crank + link B: `bushing_long` (it spans link A's layer) + M3x20, head on the servo side of the crank.
+   - Link A + link B (the hole 75 mm down link B): `bushing` + M3x12, head on the outside of link B (the counterbore keeps it clear of the wheel).
 
    Link B goes on the outside, with its motor block pointing in toward the body.
+
+<p align="center"><img src="docs/leg_bearings.png" width="520" alt="Leg with the three 608 bearings"></p>
 6. **Motors.** Push each N20 into link B's block from the inside until the gearbox face is flush with the outer side of the link. Tighten the pinch bolt (M3x16 + nut).
 7. **Wheels.** Hub onto the shaft with an M2 screw onto the flat, then stretch the TPU tyre over the hub.
 8. **Deck.** ESP32 on the posts (pins down). MPU6050 flat on the centre pad, **X arrow pointing left-right**. MX1508 front left, servo supply front right, MP1584 under the ESP32. Bolt the deck to the chassis.

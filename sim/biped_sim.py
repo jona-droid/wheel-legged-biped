@@ -31,15 +31,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ---------------- geometry (metres), from the CAD ----------------
 X_CRANK = 0.0497      # mid-plane of the cranks
-X_A = 0.0566          # link A plane
-X_B = 0.0622          # link B plane
-X_WHEEL = 0.0707      # wheel centre plane
-X_PIN = 0.0594        # the knee pin (between the A and B planes)
+X_A = 0.0583          # link A plane (608 bosses, 7.6 mm)
+X_B = 0.0669          # link B plane
+X_WHEEL = 0.0767      # wheel centre plane
+X_PIN = 0.0626        # the knee joint (between the A and B planes)
 WHEEL_R = 0.0335
 
 # ---------------- masses (kg), from the STL volumes + parts ----------------
 M = dict(servo=0.055, chassis=0.041, deck=0.022 + 0.045,   # deck + ESP32, MPU, MX1508, bucks, wires
-         top=0.024 + 0.005, battery=0.107, crank=0.006, link_a=0.003, link_b=0.008,
+         top=0.024 + 0.005, battery=0.107, crank=0.006, link_a=0.004 + 0.024, link_b=0.009 + 0.012,   # links incl. their 608s (12 g each)
          motor=0.010, wheel=0.013, screws=0.030)
 
 # ---------------- N20 300 rpm on 2S, duty capped to ~6 V ----------------

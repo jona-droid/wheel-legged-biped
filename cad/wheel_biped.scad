@@ -7,7 +7,7 @@
 //    * Open in OpenSCAD, set `part`, press F6, export STL.
 //    * Or:  openscad -D 'part="crank"' -o crank.stl wheel_biped.scad
 //      part = "assembly" | "chassis" | "deck" | "top" | "pillar" | "crank"
-//             | "link_a" | "link_b" | "spacer" | "wheel_hub" | "tire" | "visor"
+//             | "link_a" | "link_b" | "bushing" | "bushing_long" | "wheel_hub" | "tire" | "visor"
 //    * In "assembly" you can change `wheel_depth` to see the robot crouch/stand.
 //
 //  Axes: X = along the wheel axle (left/right), Y = forward, Z = up.
@@ -47,7 +47,21 @@ L2           = 75;         // link A, and ER->P on link B
 LB           = 100;        // link B, ER -> wheel axle
 link_t       = 5;          // thickness of every link plate
 link_w       = 10;         // width of links
-gap          = 0.6;        // washer gap between stacked links
+gap          = 1.0;        // gap between stacked leg planes (= bushing collar thickness)
+
+/* ---------------- 608 bearings in the passive leg joints ---------------- */
+// Each passive joint: a 608 pressed into one link, a printed bushing (collar + 8 mm spigot)
+// pressed into the bearing, and an M3 bolt whose head is sunk into the other part and whose
+// thread cuts into the bushing's 2.8 mm bore (no nut).
+bear_od      = 22.0;  bear_id = 8.0;  bear_t = 7.0;
+bear_fit     = 0.15;       // extra on the bearing seat. Too tight -> 0.25, falls out -> 0.05
+bear_lip_id  = 19.0;       // lip that stops the bearing (touches the outer race only)
+boss_d       = 27.0;       // link boss around a bearing
+boss_t       = bear_t + 0.6;
+bush_d       = 7.95;       // bushing spigot (608 bore = 8.00). Loose -> 8.05, won't go in -> 7.85
+bush_collar  = 11.0;       // collar touches only the inner race (608 inner race ~12 mm)
+bush_tap     = 2.8;        // M3 cuts its own thread here
+cbore_d      = 6.4;  cbore_h = 3.0;   // sunk M3 socket heads
 
 /* ---------------- MG996R ---------------- */
 sv_L         = 40.7;       // body length (along Z here)
@@ -108,9 +122,9 @@ in_x      = sv_below_tab + 1;            // inner face of side plates (x)
 out_x     = in_x + wall;                 // outer face (servo tabs rest here)
 sv_top_x  = out_x + sv_tab_t + sv_above_tab;
 crank_x0  = sv_top_x + horn_stack - horn_t;   // crank inner face (horn sits in the recess)
-planeA_x0 = crank_x0 + horn_t + link_t + gap;
-planeB_x0 = planeA_x0 + link_t + gap;
-wheel_x0  = planeB_x0 + link_t + 1.0;
+planeA_x0 = crank_x0 + horn_t + link_t + gap;     // link A (bearing bosses boss_t thick)
+planeB_x0 = planeA_x0 + boss_t + gap;              // link B
+wheel_x0  = planeB_x0 + boss_t + 1.0;
 box_bot   = -(sv_L - sv_shaft_off) - (sv_tab_len - sv_L)/2 - floor_t - 1;
 sv_cz     = sv_shaft_off - sv_L/2;       // servo body centre z (shaft at z = 0)
 deck_z    = box_top;
@@ -305,12 +319,13 @@ module pillar(L=pillar_h) {
 // =====================================================================
 module bar2d(len, w=link_w) { hull() { circle(d=w); translate([0, len]) circle(d=w); } }
 
+elbow_d = 13;   // crank elbow: room for the sunk bolt head
 module crank() {
     hub = horn_d + 4;
     difference() {
         union() {
             // teardrop: hub flowing into the elbow
-            linear_extrude(link_t + horn_t) hull() { circle(d=hub, $fn=96); translate([0, L1]) circle(d=link_w); }
+            linear_extrude(link_t + horn_t) hull() { circle(d=hub, $fn=96); translate([0, L1]) circle(d=elbow_d); }
         }
         // lightening window + top channel
         translate([0,0,-1]) linear_extrude(20) hull() { translate([0, 17]) circle(d=6); translate([0, 40]) circle(d=3); }
@@ -322,16 +337,36 @@ module crank() {
         // 4 screws through the horn holes into the crank
         // slots instead of holes, so they line up with any disc horn's hole circle (r 5.5 .. 9.5 mm)
         for (a=[0:45:315]) rotate([0,0,a]) hull() for (r=[5.5, 9.5]) translate([r, 0, -1]) cylinder(d=horn_screw_d, h=20);
-        // elbow pin
+        // elbow bolt, head sunk on the servo side
         translate([0, L1, -1]) cylinder(d=pin_hole, h=20);
+        translate([0, L1, -0.01]) cylinder(d=cbore_d, h=cbore_h + 0.01);
     }
 }
 
+// 608 seat in a boss at local (0, y). lip_top = the lip is on the z = boss_t face
+// (bearing pressed in from z = 0), otherwise on the z = 0 face.
+module bearing_boss(y) { translate([0, y, 0]) cylinder(d=boss_d, h=boss_t, $fn=96); }
+module bearing_seat(y, lip_top) {
+    translate([0, y, 0]) {
+        translate([0, 0, lip_top ? -0.01 : boss_t - bear_t]) cylinder(d=bear_od + bear_fit, h=bear_t + 0.01, $fn=96);
+        translate([0, 0, -1]) cylinder(d=bear_lip_id, h=boss_t + 2, $fn=72);
+    }
+}
+// Link A: bearings at both ends. z = 0 is the crank side.
+// The lip is always on the side the bushing comes from, so the collar pushes the inner race
+// and the lip holds the outer race: the joint can't be pulled together, only apart (and the
+// neighbouring links stop that after 1 mm).
+// EF end: bushing from the crank side -> lip on the crank side (z = 0), bearing goes in from the outside.
+// P end:  bushing from link B's side -> lip on the outside (z = boss_t), bearing goes in from the crank side.
 module link_a() {
     difference() {
-        linear_extrude(link_t) bone2d(L2, link_w + 1, 8);
-        for (y=[0, L2]) translate([0, y, -1]) cylinder(d=pin_hole, h=link_t+2);
-        groove(9, L2 - 9);
+        union() {
+            linear_extrude(link_t) bone2d(L2, link_w + 1, 8);
+            for (y=[0, L2]) bearing_boss(y);
+        }
+        bearing_seat(0, false);
+        bearing_seat(L2, true);
+        groove(boss_d/2 + 3, L2 - boss_d/2 - 3);
     }
 }
 
@@ -343,13 +378,18 @@ module link_b() {
     difference() {
         union() {
             linear_extrude(link_t) bone2d(LB, link_w + 1, 8);
+            bearing_boss(0);                                          // ER: 608
+            translate([0, L2, 0]) cylinder(d=13, h=boss_t);           // P: bolt boss, reaches the bushing collar
             // motor block around the axle end (chamfered)
             translate([0, LB, 0]) linear_extrude(link_t + grip_len) oct2d(mb_h, mb_w, 2);
             // pinch ears below the axle
             translate([0, LB + mb_w/2 + 3, (link_t + grip_len)/2]) cube([12, 8, link_t + grip_len], center=true);
         }
-        for (y=[0, L2]) translate([0, y, -1]) cylinder(d=pin_hole, h=link_t+2);
-        groove(9, L2 - 9);
+        // z = 0 is the OUTSIDE of link B. ER bushing comes from the inside -> lip inside (z = boss_t).
+        bearing_seat(0, true);
+        translate([0, L2, -1]) cylinder(d=pin_hole, h=boss_t + 2);
+        translate([0, L2, -0.01]) cylinder(d=cbore_d, h=cbore_h + 0.01);   // head sunk: clears the wheel rim
+        groove(boss_d/2 + 3, L2 - 9);
         // motor pocket: n20_h across the link, n20_w along it (flats face the sides)
         translate([0, LB, -1]) rotate([0,0,90]) translate([-(n20_w+motor_tol)/2, -(n20_h+motor_tol)/2, 0])
             cube([n20_w + motor_tol, n20_h + motor_tol, link_t + grip_len + 2]);
@@ -361,9 +401,19 @@ module link_b() {
     }
 }
 
-module spacer() {   // goes on the rear elbow pin, between crank and link B (link A's plane)
-    difference() { cylinder(d=8, h=link_t + 2*gap); translate([0,0,-1]) cylinder(d=pin_hole, h=link_t + 3); }
+// Bushing: collar (sits on the bearing's inner race) + 8 mm spigot pressed into the 608.
+// bushing():      EF and P joints, collar = the gap between two planes.
+// bushing_long(): ER joint, the collar spans link A's plane (crank -> link B).
+lip_t = boss_t - bear_t;
+module bushing(collar=gap + lip_t) {
+    difference() {
+        union() { cylinder(d=bush_collar, h=collar, $fn=48); cylinder(d=bush_d, h=collar + bear_t, $fn=48); }
+        translate([0,0,-1]) cylinder(d=pin_hole, h=collar + 1.01);
+        translate([0,0,-1]) cylinder(d=bush_tap, h=collar + bear_t + 2, $fn=24);
+        translate([0,0,collar + bear_t - 0.5]) cylinder(d1=bush_d - 2.4, d2=bush_d - 0.6, h=0.51, $fn=48);  // lead-in chamfer
+    }
 }
+module bushing_long() { bushing(gap + boss_t + gap + lip_t); }
 
 // ---------------- wheel hub + TPU tyre (from the balancing bot) ----------------
 module d_hole(h) {
@@ -452,10 +502,16 @@ module leg(depth) {
     color("#2f6fd0") place_link(crank_x0, SF, EF) crank();
     color("#2f6fd0") place_link(crank_x0, SR, ER) crank();
     color("#8d949c") place_link(planeA_x0, EF, P) link_a();
-    color("#8d949c") place_link(planeB_x0 + link_t, ER, W, flip=true) link_b();
-    color("#8d949c") translate([planeA_x0 - gap/2, ER[0], ER[1]]) rotate([0,90,0]) spacer();
+    color("#8d949c") place_link(planeB_x0 + boss_t, ER, W, flip=true) link_b();
+    // bushings + bearings
+    color("#2f6fd0") translate([planeA_x0 - gap, EF[0], EF[1]]) rotate([0,90,0]) bushing();
+    color("#2f6fd0") translate([planeB_x0, P[0], P[1]]) rotate([0,-90,0]) bushing();
+    color("#2f6fd0") translate([planeA_x0 - gap, ER[0], ER[1]]) rotate([0,90,0]) bushing_long();
+    for (b=[[planeA_x0 + lip_t, EF], [planeA_x0, P], [planeB_x0 + lip_t, ER]])
+        color("#c9ccd1") translate([b[0], b[1][0], b[1][1]]) rotate([0,90,0]) difference() {
+            cylinder(d=bear_od, h=bear_t, $fn=48); translate([0,0,-1]) cylinder(d=bear_id, h=bear_t+2); }
     // motor + wheel
-    color("silver") translate([planeB_x0 + link_t - 13, W[0], W[1]]) cube([26, n20_h, n20_w], center=true);
+    color("silver") translate([planeB_x0 + boss_t - 13, W[0], W[1]]) cube([26, n20_h, n20_w], center=true);
     color("#2f6fd0") translate([wheel_x0 + wheel_w, W[0], W[1]]) rotate([0,-90,0]) wheel_hub();
     color("#212529") translate([wheel_x0 + wheel_w - lip_w - 0.15, W[0], W[1]]) rotate([0,-90,0]) tire();
 }
@@ -484,7 +540,8 @@ if (part == "pillar")    pillar();
 if (part == "crank")     translate([0,0,link_t + horn_t]) rotate([180,0,0]) crank();   // horn recess up: no bridging
 if (part == "link_a")    link_a();
 if (part == "link_b")    link_b();
-if (part == "spacer")    spacer();
+if (part == "bushing")      bushing();
+if (part == "bushing_long") bushing_long();
 if (part == "wheel_hub") wheel_hub();
 if (part == "tire")      tire();
 if (part == "visor")     translate([0,0,2.5]) rotate([-90,0,0]) visor();   // face down

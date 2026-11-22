@@ -82,7 +82,7 @@
 #define LEG_L1             55.0f   // crank
 #define LEG_L2             75.0f   // link A, and ER -> knee pin on link B
 #define LEG_LB             100.0f  // link B, ER -> wheel axle
-#define TRACK_HALF         70.7f   // centre of robot to the middle of a tyre
+#define TRACK_HALF         76.7f   // centre of robot to the middle of a tyre (608 bearing legs)
 #define HEIGHT_MIN         72.0f   // below this the rear crank hits the deck
 #define HEIGHT_MAX         145.0f  // near full stretch the servos lose leverage
 #define HEIGHT_DEFAULT     110.0f  // stage 4/5 fixed height (robot ~22 cm tall)
