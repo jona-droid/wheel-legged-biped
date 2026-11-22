@@ -168,14 +168,11 @@ function ang(from, to) = atan2(to[0]-from[0], -(to[1]-from[1]));   // from strai
 // =====================================================================
 //  CHASSIS: the servo box. Servos slide in from the outside, tabs on the side plates.
 // =====================================================================
-servo_clear = 0.5;   // per side. 0.2 was too tight on the first chassis print (2026-11-22)
-cable_notch = [6, 3.2];    // width x depth of the cable notch, top end only (MG996R cable exits by the shaft end)
+servo_clear     = 0.7;   // per side, across the servo width (first print at 0.2 was too tight)
+servo_clear_end = 1.3;   // per end, along the servo length: 1st print (0.2) was ~2 mm short, so +2.2 mm total; cable squeezes past (no notch)
 module servo_cut() {
     // in the side plate's local frame: plate in YZ, servo centre at (y, z)
-    cube([wall*3, sv_W + 2*servo_clear, sv_L + 2*servo_clear], center=true);
-    // small notch at the shaft (top) end so the cable grommet slides through
-    translate([0, 0, sv_L/2 + servo_clear + cable_notch[1]/2 - 0.5])
-        cube([wall*3, cable_notch[0], cable_notch[1] + 1], center=true);
+    cube([wall*3, sv_W + 2*servo_clear, sv_L + 2*servo_clear_end], center=true);
 }
 
 module chassis_envelope() {   // faceted outer shape: chamfered corners and bottom edge
